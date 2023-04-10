@@ -29,18 +29,17 @@ public class Person {
 
     @Column(unique = true,nullable = false)
     private String email;
-    @Basic()
+    @Column()
     private String website;
-    @Basic()
+    @Column()
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
 
-    @Basic(optional = false)
+    @Column(nullable = false)
     private String password;
-
     @ManyToOne
     @JoinColumn(name = "group_id")
-    private Group group;
+    private GroupTable group;
 
 
 

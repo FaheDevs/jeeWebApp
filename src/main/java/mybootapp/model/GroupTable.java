@@ -17,13 +17,13 @@ import java.util.List;
 public class GroupTable {
 
     @Id()
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(nullable = false)
     private String  name ;
 
 
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group",fetch = FetchType.EAGER)
+    @Column(nullable = false)
     private List<Person> personListbyid ;
 
 

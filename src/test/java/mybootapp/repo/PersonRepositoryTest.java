@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -22,14 +23,18 @@ public class PersonRepositoryTest {
     private GroupTableRepository groupRepository;
 
     private Person testPerson;
+    private GroupTable groupTable;
 
     @BeforeEach
     public void setUp() {
+        groupTable = new GroupTable(1L,"GROUPE 1",new ArrayList<>());
+        groupRepository.save(groupTable);
         testPerson = new Person();
         testPerson.setFirstName("John");
         testPerson.setLastName("Doe");
         testPerson.setEmail("john.doe@example.com");
         testPerson.setPassword("password123");
+        testPerson.setGroup(groupTable);
         personRepository.save(testPerson);
     }
 

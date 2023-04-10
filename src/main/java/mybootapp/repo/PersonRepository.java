@@ -1,9 +1,8 @@
 package mybootapp.repo;
 
-import mybootapp.model.Group;
+import mybootapp.model.GroupTable;
 import mybootapp.model.Person;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
@@ -16,7 +15,7 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
     List<Person> findByLastName(String lastName);
 
     // Recherche par groupe
-    List<Person> findByGroup(Group group);
+    List<Person> findByGroup(GroupTable group);
 
     // Recherche par date de naissance après une certaine date
     List<Person> findByDateOfBirthAfter(Date date);
@@ -28,7 +27,7 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
     List<Person> findByFirstNameAndLastName(String firstName, String lastName);
 
     // Recherche par nom et groupe
-    List<Person> findByLastNameAndGroup(String lastName, Group group);
+    List<Person> findByLastNameAndGroup(String lastName, GroupTable group);
 
     // Recherche par nom de famille ordonnée par date de naissance décroissante
     List<Person> findByLastNameOrderByDateOfBirthDesc(String lastName);
