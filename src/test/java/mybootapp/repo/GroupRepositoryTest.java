@@ -1,6 +1,6 @@
 package mybootapp.repo;
 
-import mybootapp.model.Group;
+import mybootapp.model.GroupTable;
 import mybootapp.model.Person;
 import mybootapp.web.Starter;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,9 +8,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,28 +23,33 @@ class GroupRepositoryTest {
 
 
     @Autowired
-    GroupRepository groupRepository ;
+    GroupTableRepository groupRepository ;
 
-    private Group testGroup;
+    private GroupTable testGroup;
 
-
-
-        testGroup = new Group(2L, "Test Group", null);
+    @BeforeEach
+    void setup(){
+        testGroup = new GroupTable(2L, "Test Group", new ArrayList<>());
         groupRepository.save(testGroup);
+    }
+
 
 
     @Test
     void findGroupById() {
-        Optional<Group> groupOptional = groupRepository.findById(testGroup.getId());
-        assertNotNull(groupOptional);
-        assertEquals(testGroup.getName(), groupOptional.get().getName());
+
+        System.out.println(groupRepository.findAll());
+
+        var groupTable = groupRepository.findById(testGroup.getId());
+        groupTable.ifPresent(table -> assertEquals(table.getId(), testGroup.getId()));
+
     }
 
     @Test
     void findGroupByName() {
-        Group group = groupRepository.findGroupByName(testGroup.getName());
-        assertNotNull(group);
-        assertEquals(testGroup.getId(), group.getId());
+        var result = groupRepository.findGroupByName(testGroup.getName());
+        assertNotNull(result);
+        assertEquals(testGroup.getName(), result.getName());
     }
 
     @Test

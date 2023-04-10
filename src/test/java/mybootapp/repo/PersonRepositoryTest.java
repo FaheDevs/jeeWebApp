@@ -1,11 +1,8 @@
-package mybootapp.test;
+package mybootapp.repo;
 
-import mybootapp.model.Group;
+import mybootapp.model.GroupTable;
 import mybootapp.model.Person;
-import mybootapp.repo.GroupRepository;
-import mybootapp.repo.PersonRepository;
 import mybootapp.web.Starter;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +19,7 @@ public class PersonRepositoryTest {
     @Autowired
     private PersonRepository personRepository;
     @Autowired
-    private GroupRepository groupRepository;
+    private GroupTableRepository groupRepository;
 
     private Person testPerson;
 
@@ -59,12 +56,7 @@ public class PersonRepositoryTest {
 
     @Test
     public void testFindAllByGroupId() {
-        Group testGroup = new Group();
-        testGroup.setName("Test Group");
-        testGroup = groupRepository.save(testGroup);
-        testPerson.setGroup(testGroup);
-        personRepository.save(testPerson);
-        List<Person> results = personRepository.findAllByGroupId(testGroup.getId());
+        List<Person> results = personRepository.findAllByGroupId(groupTable.getId());
         Assertions.assertNotNull(results);
         Assertions.assertEquals(1, results.size());
         Assertions.assertEquals(testPerson.getId(), results.get(0).getId());

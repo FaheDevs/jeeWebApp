@@ -18,15 +18,16 @@ public class Person {
 
 
     @Id()
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
-    @Basic()
+    @Column(nullable = false)
     private String firstName;
-    @Basic()
+    @Column(nullable = false)
     private String lastName;
 
-    @Basic(optional = false)
+    @Column(unique = true,nullable = false)
     private String email;
     @Basic()
     private String website;

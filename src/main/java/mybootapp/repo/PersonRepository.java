@@ -34,6 +34,8 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
     List<Person> findByLastNameOrderByDateOfBirthDesc(String lastName);
 
     List<Person> findAllByGroupId(Long id);
+
+    void deleteById(Long aLong);
 }
 
 
