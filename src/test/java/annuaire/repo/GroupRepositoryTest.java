@@ -1,19 +1,15 @@
-package mybootapp.repo;
+package annuaire.repo;
 
-import mybootapp.model.GroupTable;
-import mybootapp.model.Person;
-import mybootapp.web.Starter;
-import org.junit.jupiter.api.Assertions;
+import annuaire.model.GroupTable;
+import annuaire.web.Starter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -40,7 +36,6 @@ class GroupRepositoryTest {
     @Test
     void findGroupById() {
 
-        System.out.println(groupRepository.findAll());
 
         var groupTable = groupRepository.findById(testGroup.getId());
         groupTable.ifPresent(table -> assertEquals(table.getId(), testGroup.getId()));
@@ -50,14 +45,15 @@ class GroupRepositoryTest {
     @Test
     void findGroupByName() {
         var result = groupRepository.findGroupByName(testGroup.getName());
+        System.out.println(result);
         assertNotNull(result);
         assertEquals(testGroup.getName(), result.getName());
     }
 
     @Disabled
-    void findByPersonListbyid() {
-        List<Person> personList = groupRepository.findByPersonListbyid(testGroup.getId());
-        assertNotNull(personList);
-        assertEquals(0, personList.size());
+    void findByPersonList() {
+//        List<Person> personList = groupRepository.findlistByName(testGroup.getName());
+//        assertNotNull(personList);
+//        assertEquals(0, personList.size());
     }
 }

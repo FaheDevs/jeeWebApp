@@ -1,8 +1,8 @@
-package mybootapp.repo;
+package annuaire.repo;
 
-import mybootapp.model.GroupTable;
-import mybootapp.model.Person;
-import mybootapp.web.Starter;
+import annuaire.model.GroupTable;
+import annuaire.model.Person;
+import annuaire.web.Starter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
-@ContextConfiguration(classes = Starter.class)
+@ContextConfiguration(classes = {Starter.class, GroupTable.class, Person.class})
 
 public class PersonRepositoryTest {
     @Autowired
@@ -40,7 +40,11 @@ public class PersonRepositoryTest {
 
     @Test
     public void testFindByEmail() {
+
+        System.err.println(personRepository.findAll());
         String email = "john.doe@example.com";
+
+
         Person result = personRepository.findByEmail(email);
         Assertions.assertNotNull(result);
         Assertions.assertEquals(testPerson.getId(), result.getId());

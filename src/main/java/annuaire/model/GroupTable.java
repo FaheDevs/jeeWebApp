@@ -1,9 +1,8 @@
-package mybootapp.model;
+package annuaire.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,6 +16,7 @@ import java.util.List;
 public class GroupTable {
 
     @Id()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
     private String  name ;
@@ -24,7 +24,7 @@ public class GroupTable {
 
     @OneToMany(mappedBy = "group",fetch = FetchType.EAGER)
     @Column(nullable = false)
-    private List<Person> personListbyid ;
+    private List<Person> list;
 
 
 }

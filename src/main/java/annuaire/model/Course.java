@@ -1,4 +1,4 @@
-package mybootapp.model;
+package annuaire.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

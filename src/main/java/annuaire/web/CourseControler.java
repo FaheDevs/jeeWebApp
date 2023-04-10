@@ -1,4 +1,4 @@
-package mybootapp.web;
+package annuaire.web;
 
 import javax.annotation.PostConstruct;
 
@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import mybootapp.model.Course;
-import mybootapp.repo.CourseRepository;
+import annuaire.model.Course;
+import annuaire.repo.CourseRepository;
 
 @Controller
 @RequestMapping("/course")

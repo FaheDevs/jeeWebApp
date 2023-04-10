@@ -1,44 +1,45 @@
-package mybootapp.model;
+package annuaire.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-
 
 @Data // Generates getters, setters, toString(), equals(), and hashCode()
 @NoArgsConstructor // Generates a no-args constructor
 @AllArgsConstructor // Generates an all-args constructor
 
-public class Person {
+public class Person implements Serializable {
+
 
 
     @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
-    @Column(nullable = false)
+    @Column()
     private String firstName;
-    @Column(nullable = false)
+    @Column()
     private String lastName;
-
-    @Column(unique = true,nullable = false)
+    @Basic(optional = false)
+    @Column(nullable = false, unique = true)
     private String email;
     @Column()
     private String website;
     @Column()
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
-
+    @Basic(optional = false)
     @Column(nullable = false)
     private String password;
-    @ManyToOne
-    @JoinColumn(name = "group_id")
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "group_ref")
     private GroupTable group;
 
 
