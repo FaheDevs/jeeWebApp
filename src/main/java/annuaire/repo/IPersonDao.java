@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface IPersonDao {
 
-
     Person findByEmail(String email);
 
     List<Person> findByLastName(String lastName);

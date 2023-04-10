@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -33,6 +34,12 @@ public class TestDataBaseConnection {
         try (Connection connection = dataSource.getConnection()) {
             assertNotNull(connection);
         }
+        String sql = "CREATE TABLE personnes (id INT NOT NULL, nom VARCHAR(50), age INT, PRIMARY KEY (id))";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.executeUpdate();
+        }
+
     }
 
 
