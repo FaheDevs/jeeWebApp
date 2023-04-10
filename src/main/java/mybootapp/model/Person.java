@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "Person")
+@Entity
 
 
 @Data // Generates getters, setters, toString(), equals(), and hashCode()

@@ -3,6 +3,8 @@ package mybootapp.web;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
+import mybootapp.model.Person;
+import mybootapp.repo.PersonRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -16,8 +18,10 @@ import mybootapp.model.Course;
 import mybootapp.repo.CourseRepository;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackageClasses = CourseRepository.class)
-@EntityScan(basePackageClasses = Course.class)
+@EnableJpaRepositories(basePackageClasses = {CourseRepository.class, PersonRepository.class})
+@EntityScan(basePackageClasses = {Course.class, Person.class})
+
+
 public class Starter extends SpringBootServletInitializer implements WebMvcConfigurer {
 
 	@Override

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "Group")
+@Entity
 
 
 @Data // Generates getters, setters, toString(), equals(), and hashCode()
@@ -23,7 +23,7 @@ public class Group {
 
 
     @OneToMany(mappedBy = "group")
-    private List<Person> personList ;
+    private List<Person> personListbyid ;
 
 
 }
